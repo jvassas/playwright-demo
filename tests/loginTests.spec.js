@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/loginPage";
 import { SideNav } from "../pages/sideNav";
+const Data = require("../utilities/data.json");
 
 test.describe("Login Tests", () => {
   test.beforeEach(async ({ page }) => {
@@ -13,8 +14,8 @@ test.describe("Login Tests", () => {
     async ({ page }) => {
       const loginPage = new LoginPage(page);
       const sideNav = new SideNav(page);
-      await loginPage.inputUserName("admin");
-      await loginPage.inputPassword("password123");
+      await loginPage.inputUserName(Data.user1.username);
+      await loginPage.inputPassword(Data.user1.password);
       await loginPage.clickSubmitBtn();
       await expect(sideNav.projectsHeading).toBeVisible();
     }

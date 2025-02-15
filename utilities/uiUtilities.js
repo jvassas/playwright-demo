@@ -8,6 +8,7 @@ exports.UiUtilities = class UiUtilities {
     this.page = page;
   }
 
+  // This function can be modified if there are different locator types
   async inputText(locatorType, locator, text) {
     switch (locatorType) {
       case "id":
@@ -19,6 +20,7 @@ exports.UiUtilities = class UiUtilities {
     }
   }
 
+  // This function can be modified if there are different locator types
   async clickBtn(locatorType, locator) {
     switch (locatorType) {
       case "role":

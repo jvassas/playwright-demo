@@ -1,5 +1,8 @@
 const { UiUtilities } = require("../utilities/uiUtilities");
 const projectsHeading_Name = "Projects";
+const webApplicationLink_Name = "Web Application Main web";
+const mobileApplicationLink_Name = "Mobile Application Native";
+const marketingCampaignLink_Name = "Marketing Campaign Q2";
 
 exports.SideNav = class SideNav {
   constructor(page) {
@@ -11,4 +14,15 @@ exports.SideNav = class SideNav {
   }
 
   //Actions
+  async clickWebApplicationLink() {
+    await this.uiUtilities.clickBtn("role", webApplicationLink_Name);
+  }
+
+  async clickMobileApplicationLink() {
+    await this.uiUtilities.clickBtn("role", mobileApplicationLink_Name);
+  }
+
+  async clickMarketingCampaignLink() {
+    await this.uiUtilities.clickBtn("role", marketingCampaignLink_Name);
+  }
 };
