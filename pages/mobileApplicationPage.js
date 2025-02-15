@@ -8,56 +8,27 @@ exports.MobileApplicationPage = class MobileApplicationPage {
     this.mobileApplicationHeading = page
       .getByRole("banner")
       .getByRole("heading", { name: mobileApplicationHeading_Name });
-    this.toDoColumn = page.locator("div:has(h2:text('To Do'))");
-    this.inProgressColumn = page.locator("div:has(h2:text('In Progress'))");
-    this.doneColumn = page.locator("div:has(h2:text('Done'))");
+
+    this.columns = {
+      toDoColumn: page.locator("div:has(h2:text('To Do'))"),
+      inProgressColumn: page.locator("div:has(h2:text('In Progress'))"),
+      doneColumn: page.locator("div:has(h2:text('Done'))"),
+    };
   }
 
-  getToDoTaskCards(taskName) {
-    return this.toDoColumn.locator(`div.bg-white:has-text("${taskName}")`);
-  }
-
-  async verifyToDoTaskExists(taskName) {
-    const task = this.getToDoTaskCards(taskName);
-    await expect(task).toBeVisible();
-  }
-
-  async verifyToDoTaskTags(taskName, tags) {
-    const task = this.getToDoTaskCards(taskName);
-    for (const tag of tags) {
-      await expect(task.locator(`text="${tag}"`)).toBeVisible();
-    }
-  }
-  /* --------------------------------------------------------------- */
-  getInProgressTaskCards(taskName) {
-    return this.inProgressColumn.locator(
-      `div.bg-white:has-text("${taskName}")`
+  getTaskCards(column, taskName) {
+    return this.columns[column].locator(
+      `:scope :is(.bg-white:has-text("${taskName}"))`
     );
   }
 
-  async verifyInProgressTaskExists(taskName) {
-    const task = this.getInProgressTaskCards(taskName);
+  async verifyTaskExists(column, taskName) {
+    const task = this.getTaskCards(column, taskName);
     await expect(task).toBeVisible();
   }
 
-  async verifyInProgressTaskTags(taskName, tags) {
-    const task = this.getInProgressTaskCards(taskName);
-    for (const tag of tags) {
-      await expect(task.locator(`text="${tag}"`)).toBeVisible();
-    }
-  }
-  /* --------------------------------------------------------------- */
-  getDoneTaskCards(taskName) {
-    return this.doneColumn.locator(`div.bg-white:has-text("${taskName}")`);
-  }
-
-  async verifyDoneTaskExists(taskName) {
-    const task = this.getDoneTaskCards(taskName);
-    await expect(task).toBeVisible();
-  }
-
-  async verifyDoneTaskTags(taskName, tags) {
-    const task = this.getDoneTaskCards(taskName);
+  async verifyTaskTags(column, taskName, tags) {
+    const task = this.getTaskCards(column, taskName);
     for (const tag of tags) {
       await expect(task.locator(`text="${tag}"`)).toBeVisible();
     }

@@ -18,10 +18,12 @@ test.describe("Web Application Page Tests", () => {
     async ({ page }) => {
       const webApplicationPage = new WebApplicationPage(page);
       await expect(webApplicationPage.webApplicationHeading).toBeVisible();
-      await webApplicationPage.verifyToDoTaskExists(
+      await webApplicationPage.verifyTaskExists(
+        "toDoColumn",
         "Implement user authentication"
       );
-      await webApplicationPage.verifyToDoTaskTags(
+      await webApplicationPage.verifyTaskTags(
+        "toDoColumn",
         "Implement user authentication",
         ["Feature", "High Priority"]
       );
@@ -34,10 +36,15 @@ test.describe("Web Application Page Tests", () => {
     async ({ page }) => {
       const webApplicationPage = new WebApplicationPage(page);
       await expect(webApplicationPage.webApplicationHeading).toBeVisible();
-      await webApplicationPage.verifyToDoTaskExists("Fix navigation bug");
-      await webApplicationPage.verifyToDoTaskTags("Fix navigation bug", [
-        "Bug",
-      ]);
+      await webApplicationPage.verifyTaskExists(
+        "toDoColumn",
+        "Fix navigation bug"
+      );
+      await webApplicationPage.verifyTaskTags(
+        "toDoColumn",
+        "Fix navigation bug",
+        ["Bug"]
+      );
     }
   );
 
@@ -47,10 +54,12 @@ test.describe("Web Application Page Tests", () => {
     async ({ page }) => {
       const webApplicationPage = new WebApplicationPage(page);
       await expect(webApplicationPage.webApplicationHeading).toBeVisible();
-      await webApplicationPage.verifyInProgressTaskExists(
+      await webApplicationPage.verifyTaskExists(
+        "inProgressColumn",
         "Design system updates"
       );
-      await webApplicationPage.verifyInProgressTaskTags(
+      await webApplicationPage.verifyTaskTags(
+        "inProgressColumn",
         "Design system updates",
         ["Design"]
       );

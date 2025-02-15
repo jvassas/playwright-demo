@@ -23,10 +23,12 @@ test.describe("Mobile Application Page Tests", () => {
       await expect(
         mobileApplicationPage.mobileApplicationHeading
       ).toBeVisible();
-      await mobileApplicationPage.verifyToDoTaskExists(
+      await mobileApplicationPage.verifyTaskExists(
+        "toDoColumn",
         "Push notification system"
       );
-      await mobileApplicationPage.verifyToDoTaskTags(
+      await mobileApplicationPage.verifyTaskTags(
+        "toDoColumn",
         "Push notification system",
         ["Feature"]
       );
@@ -43,11 +45,15 @@ test.describe("Mobile Application Page Tests", () => {
       await expect(
         mobileApplicationPage.mobileApplicationHeading
       ).toBeVisible();
-      await mobileApplicationPage.verifyInProgressTaskExists("Offline mode");
-      await mobileApplicationPage.verifyInProgressTaskTags("Offline mode", [
-        "Feature",
-        "High Priority",
-      ]);
+      await mobileApplicationPage.verifyTaskExists(
+        "inProgressColumn",
+        "Offline mode"
+      );
+      await mobileApplicationPage.verifyTaskTags(
+        "inProgressColumn",
+        "Offline mode",
+        ["Feature", "High Priority"]
+      );
     }
   );
 
@@ -61,10 +67,15 @@ test.describe("Mobile Application Page Tests", () => {
       await expect(
         mobileApplicationPage.mobileApplicationHeading
       ).toBeVisible();
-      await mobileApplicationPage.verifyDoneTaskExists("App icon design");
-      await mobileApplicationPage.verifyDoneTaskTags("App icon design", [
-        "Design",
-      ]);
+      await mobileApplicationPage.verifyTaskExists(
+        "doneColumn",
+        "App icon design"
+      );
+      await mobileApplicationPage.verifyTaskTags(
+        "doneColumn",
+        "App icon design",
+        ["Design"]
+      );
     }
   );
 });
